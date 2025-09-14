@@ -32,9 +32,7 @@ The main script parses the `saved_collections.html` file that you can export fro
 
 ---
 
-## ⚙️ Installation
 
-Clone or download this repository:
 
 
 ## 🔮 Future Additions
@@ -69,7 +67,9 @@ A `config.json` or `.ini` file will be added so users can set preferences such a
 
 
 
+## ⚙️ Installation
 
+Clone or download this repository:
 
 ```bash
 git clone https://github.com/yourusername/instagram-collections-downloader.git
