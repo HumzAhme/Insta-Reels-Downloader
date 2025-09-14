@@ -14,6 +14,12 @@ The main script parses the `saved_collections.html` file that you can export fro
 - 🎥 Downloads videos, reels, and images with `yt-dlp`  
 - 🖱️ GUI file picker for selecting your exported `saved_collections.html`  
 
+- 🌐 Waits for internet/IP reconnect instead of skipping
+- 📝 Logs failed/inaccessible posts in <collection_name>_failed.txt
+- ⏭ Skips already downloaded reels (no overwrite, prints message)
+
+- ⚠️ Falls back to html.parser if lxml isn’t available
+
 ---
 
 ## 📋 Scripts in This Repo
@@ -39,22 +45,22 @@ The main script parses the `saved_collections.html` file that you can export fro
 
 Planned improvements for upcoming versions of the scripts:
 
-### 1. Save skipped links into text files
+### 1. Save skipped links into text files [DONE!]
 - When a link cannot be downloaded (private, deleted, inaccessible, etc.), it will be stored in a `.txt` file.  
 - The `.txt` file will be named after the collection, so you can easily identify which collection had missing/skipped posts.
 
-### 2. Handle API rate limits automatically
+### 2. Handle API rate limits automatically 
 - If the library (`yt-dlp`) triggers an API limit error (rate limiting), the script will automatically detect it.  
 - In such cases, the script will attempt to change the computer’s IP by reconnecting to a VPN before retrying.
 
-### 3. Improved error handling and reporting
+### 3. Improved error handling and reporting 
 - Instead of just showing errors in the terminal, a structured log file will be created.  
 - This log will include details of:
   - Which downloads failed  
   - Why they failed  
   - Whether they were retried  
 
-### 4. Optional retry mechanism
+### 4. Optional retry mechanism [DONE]
 - Links that failed due to temporary errors (e.g., connection drops) will be retried automatically.  
 - Retries will be configurable (number of attempts) before writing to the skipped links file.
 
