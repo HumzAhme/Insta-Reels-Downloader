@@ -52,7 +52,11 @@ os.makedirs(output_dir, exist_ok=True)
 
 # --- Parse HTML file ---
 with open(html_file, "r", encoding="utf-8") as f:
-    soup = BeautifulSoup(f, "lxml")
+    try:
+        soup = BeautifulSoup(f, "lxml")
+    except Exception:
+        print("⚠️ lxml not available, falling back to html.parser")
+        soup = BeautifulSoup(f, "html.parser")
 
 collections = []
 current_collection = None
@@ -90,16 +94,30 @@ if use_cookies:
 else:
     print("⚠️ No cookies.txt found. Only some public reels may download.")
 
-# --- yt-dlp Downloader with retry + logging ---
+# --- yt-dlp Downloader with retry + logging + skip existing ---
 def download_post(url, folder, fail_log):
     ydl_opts = {
         "outtmpl": os.path.join(folder, "%(id)s.%(ext)s"),
-        "quiet": False,
+        "quiet": True,
         "noplaylist": True,
         "merge_output_format": "mp4",
     }
     if use_cookies:
         ydl_opts["cookiefile"] = cookie_file
+
+    # Pre-check if already downloaded
+    info_opts = {"quiet": True, "skip_download": True}
+    try:
+        with yt_dlp.YoutubeDL(info_opts) as ydl:
+            info = ydl.extract_info(url, download=False)
+            video_id = info.get("id")
+            ext = info.get("ext", "mp4")
+            out_file = os.path.join(folder, f"{video_id}.{ext}")
+            if os.path.exists(out_file):
+                print(f"⏭ Skipped (already exists): {url}")
+                return
+    except Exception as e:
+        print(f"⚠️ Could not pre-check {url}: {e}")
 
     while True:
         try:
