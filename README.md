@@ -71,6 +71,10 @@ A `config.json` or `.ini` file will be added so users can set preferences such a
 - Retry limits  
 - Whether to use cookies by default  
 
+## ⛔ Limitation
+
+ When IP used too much, the reels become inaccesible, when accessed by changing the IP, the download starts as below demonstrated.
+ When inaccesible, it doesn't determine if it is due to post being private or same IP requesting too much. Resultingly, skips after trying a couple of times.
 
 
 ## ⚙️ Installation
