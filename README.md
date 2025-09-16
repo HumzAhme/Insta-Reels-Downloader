@@ -73,9 +73,9 @@ A `config.json` or `.ini` file will be added so users can set preferences such a
 
 ## ⛔ Limitation
 
- When IP used too much, the reels become inaccesible, when accessed by changing the IP, the download starts as below demonstrated.
- When inaccesible, it doesn't determine if it is due to post being private or same IP requesting too much. Resultingly, skips after trying a couple of times.
-
+- When IP used too much, the reels become inaccesible, when accessed by changing the IP, the download starts as below demonstrated.
+- When inaccesible, it doesn't determine if it is due to post being private or same IP requesting too much. Resultingly, skips after trying a couple of times.
+- When the name of the collection is in slashes '/' the correct directory is not detected and instead of creating a folder of whatever the path it thinks it to be and moving on with the download, the script exits/quits. 
 
 ## ⚙️ Installation
 
